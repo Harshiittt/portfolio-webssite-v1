@@ -15,7 +15,7 @@ export default function Contact() {
         <p className="text-[#8892b0] text-[15px] leading-relaxed mb-10">
           I'm currently open to new opportunities. Whether you have a question,
           a project idea, or just want to say hi — my inbox is always open and
-          I'll do my best to get back to you!
+          I'll do my best to get back!
         </p>
 
         <a
