@@ -19,7 +19,7 @@ export default function Contact() {
         </p>
 
         <a
-          href="mailto:harshit.anand21@gmail.com"
+          href="mailto:anitagibbssuits@gmail.com"
           className="inline-block font-mono text-sm text-[#64ffda] border border-[#64ffda] rounded px-8 py-4 hover:bg-[#64ffda]/10 transition-colors mb-12"
         >
           Say Hello →
