@@ -19,7 +19,7 @@ export default function Contact() {
         </p>
 
         <a
-          href="mailto:harshit@example.com"
+          href="mailto:harshit.anand21@gmail.com"
           className="inline-block font-mono text-sm text-[#64ffda] border border-[#64ffda] rounded px-8 py-4 hover:bg-[#64ffda]/10 transition-colors mb-12"
         >
           Say Hello →
@@ -29,7 +29,7 @@ export default function Contact() {
           {[
             { label: "github", href: "https://github.com" },
             { label: "linkedin", href: "https://linkedin.com" },
-            { label: "email", href: "mailto:harshit@example.com" },
+            { label: "email", href: "mailto:harshit.anand21@gmail.com" },
             { label: "resume", href: "/resume.pdf" },
           ].map((link) => (
             <a

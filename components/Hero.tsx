@@ -15,7 +15,7 @@ export default function Hero() {
       <p className="text-[#8892b0] text-base leading-relaxed max-w-[520px] mb-10">
         I'm a software engineer at{" "}
         <span className="text-[#64ffda]">Tata Consultancy Services</span>{" "}
-        specializing in frontend development — crafting high-quality, performant
+        specializing in frontend development — shipping production mobile and web
         experiences with React Native, Next.js, and TypeScript.
       </p>
 

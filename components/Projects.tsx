@@ -9,33 +9,32 @@ interface Project {
 }
 
 const projects: Project[] = [
-  {
-    title: "Skin360",
+   {
+    title: "Tata Consultancy Services",
     description:
-      "A skincare platform built for Kenvue enabling users to analyze skin health, discover personalized routines, and track progress over time with a seamless mobile experience.",
-    tech: ["React Native", "Expo", "TypeScript", "Zustand"],
+      "Worked across 4 client applications spanning React Native, React.js, Next.js, and Flutter — delivering production features end-to-end from Figma handoff to API integration, release, and QA across Agile sprints.",
+    tech: ["React Native", "React.js", "Next.js", "TypeScript", "Zustand", "REST APIs"],
     github: "https://github.com",
   },
   {
-    title: "Smartcheck",
+    title: "PlanIt Travel Planner",
     description:
-      "An intelligent checklist and compliance tool for enterprise clients, streamlining QA workflows and surfacing actionable insights in real time.",
-    tech: ["React.js", "Next.js", "TypeScript", "Context API"],
-    github: "https://github.com",
-    live: "https://example.com",
-  },
-  {
-    title: "Kenvue CE Platform",
-    description:
-      "Consumer engagement platform for Kenvue — a multi-brand frontend solution handling user authentication, product discovery, and campaign management at scale.",
-    tech: ["React.js", "TypeScript", "Next.js", "REST APIs"],
+      "CLI-based route-optimisation tool using Google Maps Directions and Distance Matrix APIs to generate time- and budget-aware travel itineraries, surfaced as prioritised to-do lists with cost estimates.",
+    tech: ["Python", "Google Maps API"],
     github: "https://github.com",
   },
   {
-    title: "RoadTrip",
+    title: "Personal Portfolio",
     description:
-      "A side project — a road trip discovery app that surfaces tourist attractions along a driving route using Mapbox and location-aware search. Built with Expo for iOS and Android.",
-    tech: ["React Native", "Expo", "Mapbox", "TypeScript"],
+      "Dark-mode personal portfolio at harshitanand.in built with Next.js 14 and TypeScript, featuring dedicated sections for projects, skills, and contact with a fully responsive mobile-first layout and zero-downtime continuous deployment.",
+    tech: ["Next.js 14", "TypeScript", "Tailwind CSS", "Vercel"],
+    live: "https://harshitanand.in",
+  },
+  {
+    title: "Learnerula",
+    description:
+      "Adaptive e-learning platform with a Word Spin vocabulary game featuring user-segmentation logic that dynamically adjusts content difficulty based on learner proficiency scores. Built exclusively with native React Native components to minimise bundle size.",
+    tech: ["React Native", "JavaScript", "REST APIs"],
     github: "https://github.com",
   },
 ];

@@ -30,7 +30,7 @@ export default function Navbar() {
         href="/"
         className="font-mono text-[#64ffda] text-sm font-medium tracking-widest"
       >
-        harshit.dev
+        harshitanand.in
       </a>
 
       <div className="flex items-center gap-6">

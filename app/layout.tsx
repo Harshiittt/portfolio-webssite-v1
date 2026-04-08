@@ -5,14 +5,15 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Harshit | Frontend Engineer",
+  title: "Harshit Anand | Frontend Engineer",
   description:
-    "Software Engineer at TCS specializing in React Native, Next.js, and TypeScript.",
+    "Software Engineer at TCS specializing in React Native, Next.js, and TypeScript. Building production mobile and web experiences.",
   openGraph: {
-    title: "Harshit | Frontend Engineer",
+    title: "Harshit Anand | Frontend Engineer",
     description:
-      "Software Engineer at TCS specializing in React Native, Next.js, and TypeScript.",
+      "Software Engineer at TCS specializing in React Native, Next.js, and TypeScript. Building production mobile and web experiences.",
     type: "website",
+    url: "https://harshitanand.in",
   },
 };
 

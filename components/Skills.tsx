@@ -2,20 +2,20 @@ import SectionTitle from "./SectionTitle";
 
 const skillGroups = [
   {
-    category: "// frontend",
-    skills: ["React.js", "Next.js", "React Native", "TypeScript", "JavaScript", "HTML & CSS"],
+    category: "// languages",
+    skills: ["TypeScript", "JavaScript (ES6+)", "Python", "SQL", "C++"],
   },
   {
-    category: "// state & tools",
-    skills: ["Zustand", "Context API", "Expo", "Mapbox GL", "Git", "VS Code"],
+    category: "// frameworks",
+    skills: ["React Native (Expo)", "React.js", "Next.js", "Flutter"],
   },
   {
-    category: "// platforms",
-    skills: ["Vercel", "GitHub", "iOS", "Android", "Web"],
+    category: "// state & apis",
+    skills: ["Zustand", "Context API", "REST APIs", "Axios", "SSR"],
   },
   {
-    category: "// currently learning",
-    skills: ["Node.js", "PostgreSQL", "Docker", "AWS"],
+    category: "// tools & platforms",
+    skills: ["Git", "GitHub", "Jira", "Xcode", "Android Studio", "Vercel", "CI/CD"],
   },
 ];
 
