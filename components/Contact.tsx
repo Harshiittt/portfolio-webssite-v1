@@ -29,7 +29,7 @@ export default function Contact() {
           {[
             { label: "github", href: "https://github.com" },
             { label: "linkedin", href: "https://linkedin.com" },
-            { label: "email", href: "mailto:harshit.anand21@gmail.com" },
+            { label: "email", href: "mailto:anitagibbssuits@gmail.com" },
             { label: "resume", href: "/resume.pdf" },
           ].map((link) => (
             <a
