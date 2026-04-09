@@ -25,7 +25,7 @@ export default function About() {
           <p>
             Currently at{" "}
             <span className="text-[#64ffda]">Tata Consultancy Services</span>,
-            I work for clients across the fmcg industry,maintaining mobile and web applications,
+            I work for clients in the healthcare and fmcg industry,maintaining mobile and web applications,
             building scalable component libraries, wiring REST APIs, and shipping
             pixel-perfect UIs end-to-end in Agile sprints.
           </p>

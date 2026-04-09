@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const navLinks = [
-  { label: "about", href: "#about" },
-  { label: "projects", href: "#projects" },
-  { label: "skills", href: "#skills" },
-  { label: "contact", href: "#contact" },
+  { label: "about", href: "/#about" },
+  { label: "projects", href: "/#projects" },
+  { label: "skills", href: "/#skills" },
+  { label: "hobbies", href: "/hobbies" },
+  { label: "contact", href: "/#contact" },
 ];
 
 export default function Navbar() {
@@ -26,31 +28,31 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <a
+      <Link
         href="/"
         className="font-mono text-[#64ffda] text-sm font-medium tracking-widest"
       >
         harshitanand.in
-      </a>
+      </Link>
 
       <div className="flex items-center gap-6">
         {navLinks.map((link, i) => (
-          <a
+          <Link
             key={link.href}
             href={link.href}
             className="font-mono text-xs text-[#8892b0] hover:text-[#64ffda] transition-colors"
           >
             <span className="text-[#64ffda]">0{i + 1}. </span>
             {link.label}
-          </a>
+          </Link>
         ))}
-        <a
+        <Link
           href="/resume.pdf"
           target="_blank"
           className="font-mono text-xs text-[#64ffda] border border-[#64ffda] rounded px-4 py-2 hover:bg-[#64ffda]/10 transition-colors"
         >
           resume
-        </a>
+        </Link>
       </div>
     </nav>
   );
