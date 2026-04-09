@@ -3,7 +3,7 @@ import SectionTitle from "./SectionTitle";
 export default function Contact() {
   return (
     <section id="contact" className="py-20">
-      <SectionTitle num="04" title="Get in touch" />
+      <SectionTitle num="05" title="Get in touch" />
 
       <div className="text-center max-w-lg mx-auto">
         <p className="text-[#8892b0] text-sm font-mono mb-2 tracking-widest">
