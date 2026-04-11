@@ -10,11 +10,15 @@ export interface AnalysisResult {
   overview: string;
   tech_stack: string[];
   architecture: string;
-  features: string[];
+  design_patterns: string[];
+  key_features: string[];
+  scalability: string;
+  code_quality: string;
   improvements: string[];
+  confidence: number;
 }
 
-export async function fetchRepoData(url: string) {
+export async function fetchRepoData(url: string): Promise<RepoData> {
   const match = url.match(/github.com\/(.*?)\/(.*?)(\/|$)/);
   if (!match) throw new Error("Invalid GitHub URL");
 
@@ -33,7 +37,9 @@ export async function fetchRepoData(url: string) {
   ]);
 
   const readme = readmeRes?.content
-    ? Buffer.from(readmeRes.content, "base64").toString("utf-8").slice(0, 2000)
+    ? Buffer.from(readmeRes.content, "base64")
+        .toString("utf-8")
+        .slice(0, 1500)
     : "";
 
   const files = contentsRes.map((f: any) => f.name);
