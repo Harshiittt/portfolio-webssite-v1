@@ -17,12 +17,12 @@ const projects: Project[] = [
     github: "https://github.com",
   },
   {
-    title: "PlanIt Travel Planner",
-    description:
-      "CLI-based route-optimisation tool using Google Maps Directions and Distance Matrix APIs to generate time- and budget-aware travel itineraries, surfaced as prioritised to-do lists with cost estimates.",
-    tech: ["Python", "Google Maps API"],
-    github: "https://github.com",
-  },
+  title: "AI Repo Analyzer",
+  description:
+    "Built a high-performance AI system that reverse-engineers GitHub repositories into structured engineering insights, including architecture inference, scalability analysis, and code quality evaluation using Groq LLM and optimized prompt pipelines.",
+  tech: ["Next.js", "TypeScript", "Groq", "GitHub API"],
+  live: "https://www.harshitanand.in/repoAnalyzer",
+},
   {
     title: "Personal Portfolio",
     description:
