@@ -8,6 +8,7 @@ const navLinks = [
   { label: "projects", href: "/#projects" },
   { label: "skills", href: "/#skills" },
   { label: "hobbies", href: "/hobbies" },
+  { label: "analyzer", href: "/repoAnalyzer" },
   { label: "contact", href: "/#contact" },
 ];
 
