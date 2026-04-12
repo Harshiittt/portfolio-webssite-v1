@@ -10,6 +10,7 @@ const navLinks = [
   { label: "hobbies", href: "/hobbies" },
   { label: "analyzer", href: "/repoAnalyzer" },
   { label: "contact", href: "/#contact" },
+  { label: "Product Spider", href: "/productSpider" },
 ];
 
 export default function Navbar() {

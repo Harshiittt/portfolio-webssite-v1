@@ -23,6 +23,13 @@ const projects: Project[] = [
   tech: ["Next.js", "TypeScript", "Groq", "GitHub API"],
   live: "https://www.harshitanand.in/repoAnalyzer",
 },
+{
+    title: "Product Spider",
+    description:
+      "AI-powered product search engine that aggregates results from multiple e-commerce platforms, utilizing a custom-built web scraper and Groq LLM for natural language query understanding and relevance ranking. Currently in development with a scaffold page live.",
+    tech: ["Next.js", "TypeScript", "REST APIs", "Groq", "Web Scraping", "Google Shopping API"],
+    live: "https://harshitanand.in/productSpider",
+  },
   {
     title: "Personal Portfolio",
     description:
