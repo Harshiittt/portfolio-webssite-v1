@@ -52,6 +52,7 @@ export default function ProductSpiderPage() {
       {!loading && products.length === 0 && (<>
         <p className="text-gray-400 text-sm mt-6 mb-4">
          Search for any product to get started.
+         Powered by Grok Beta by X AI and Serper.
         </p>
         <h3 className= "text-lg text-gray-300 mb-4">
             Scaffold Page with real products. Full feature being worked on.
