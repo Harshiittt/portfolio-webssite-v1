@@ -30,7 +30,7 @@ export default function Contact() {
             { label: "github", href: "https://github.com" },
             { label: "linkedin", href: "https://linkedin.com" },
             { label: "email", href: "mailto:anitagibbssuits@gmail.com" },
-            { label: "resume", href: "/resume.pdf" },
+            { label: "resume", href: "mailto:anitagibbssuits@gmail.com?subject=Request%20for%20Resume" },
           ].map((link) => (
             <a
               key={link.label}
