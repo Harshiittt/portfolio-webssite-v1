@@ -6,11 +6,13 @@ export async function fetchAmazonTop3(query: string) {
   const url = `https://www.amazon.in/s?k=${encodeURIComponent(query)}`;
 
   const res = await fetch(url, {
-    headers: {
-      "User-Agent":
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-    },
-  });
+  headers: {
+    "User-Agent":
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36",
+    "Accept-Language": "en-IN,en;q=0.9",
+    "Accept-Encoding": "gzip, deflate, br",
+  },
+});
 
   const html = await res.text();
   const $ = cheerio.load(html);
