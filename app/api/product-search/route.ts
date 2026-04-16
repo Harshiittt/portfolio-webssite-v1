@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
     console.warn("Grok ranking failed, using default order:", e);
   }
 
-  //products = attachAffiliateToAll(products);
+ //products = attachAffiliateToAll(products);
 
   return NextResponse.json(products);
 }

@@ -21,11 +21,11 @@ export async function rankWithGrok(
   const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
   method: "POST",
   headers: {
-    Authorization: `Bearer ${process.env.GROQ_API_KEY}`,  // reuse existing key
+    Authorization: `Bearer ${process.env.GROQ_API_KEY}`,  // reusing existing key
     "Content-Type": "application/json",
   },
    body: JSON.stringify({
-    model: "llama-3.3-70b-versatile",   // ← grok-beta is deprecated, use this
+    model: "llama-3.3-70b-versatile",   // ← grok-beta is deprecated, using this
       messages: [
         {
           role: "system",

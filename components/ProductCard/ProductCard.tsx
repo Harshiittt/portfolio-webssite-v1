@@ -21,7 +21,7 @@ export default function ProductCard({ product }: Props) {
         className="w-full h-40 object-contain rounded-md bg-gray-50"
       />
 
-      <h2 className="text-sm font-semibold text-gray-800 line-clamp-2">
+      <h2 className="text-sm font-semibold text-gray-300 line-clamp-2">
         {product.title}
       </h2>
 
@@ -29,7 +29,9 @@ export default function ProductCard({ product }: Props) {
         <span className="text-green-600 font-bold">
           ₹{product.price.toLocaleString("en-IN")}
         </span>
-        <span className="text-yellow-500">⭐ {product.rating}</span>
+       { product.rating !== 0 && (
+          <span className="text-yellow-500">⭐ {product.rating}</span>
+        )}
       </div>
 
       {product.score !== undefined && (

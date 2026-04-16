@@ -2,7 +2,7 @@ const AMAZON_TAG = process.env.AMAZON_AFFILIATE_TAG ?? "yourtag-21";
 const FLIPKART_ID = process.env.FLIPKART_AFFILIATE_ID ?? "your_flipkart_id";
 const CUELINKS_TOKEN = process.env.CUELINKS_TOKEN ?? "";
 
-function amazonAffiliate(url: string): string {
+export function amazonAffiliate(url: string): string {
   try {
     const u = new URL(url);
     u.searchParams.set("tag", AMAZON_TAG);
