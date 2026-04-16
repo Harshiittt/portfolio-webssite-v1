@@ -48,13 +48,6 @@ export default function Navbar() {
             {link.label}
           </Link>
         ))}
-        <Link
-          href="/resume.pdf"
-          target="_blank"
-          className="font-mono text-xs text-[#64ffda] border border-[#64ffda] rounded px-4 py-2 hover:bg-[#64ffda]/10 transition-colors"
-        >
-          resume
-        </Link>
       </div>
     </nav>
   );
