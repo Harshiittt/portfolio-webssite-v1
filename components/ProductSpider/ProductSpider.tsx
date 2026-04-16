@@ -49,7 +49,7 @@ export default function ProductSpiderPage() {
       <SearchBar onSearch={handleSearch} loading={loading} />
 
       {error && <p className="text-red-500 text-sm mt-3">{error}</p>}
-      { products.length > 0 && <>
+      { amazonProducts.length > 0 && <>
          <h2 className="mt-6 font-semibold">Top 3 Results</h2>
          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-3">
             {amazonProducts.map((p) => (
