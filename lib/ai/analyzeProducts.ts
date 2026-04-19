@@ -3,7 +3,7 @@ export interface Product {
   title: string;
   price: number;
   image: string;
-  source: "amazon" | "flipkart" | "meesho" | "myntra" | string;
+  source: "amazon" | "flipkart" | "meesho" | "myntra" | "ajio" | "nykaa" | string;
   url: string;
   rating: number;
   score?: number;
@@ -26,10 +26,13 @@ export async function rankWithGrok(
   },
    body: JSON.stringify({
     model: "llama-3.3-70b-versatile",   // ← grok-beta is deprecated, using this
+    max_tokens: 90,
       messages: [
         {
-          role: "system",
-          content: `You are a product ranking AI. Given a user query and a list of products,
+          role: "system", 
+          content: `You are a product ranking AI. 
+- Relevence depends on how close that product is to the actual search of the user.
+  Given a user query and a list of products,
 return a JSON array of the same products sorted by relevance, price-value ratio, and rating.
 Add a "score" field (0-100) to each product. Return ONLY valid JSON — no explanation, no markdown.`,
         },
@@ -52,9 +55,17 @@ Add a "score" field (0-100) to each product. Return ONLY valid JSON — no expla
   const clean = raw.replace(/```json|```/g, "").trim();
   const ranked: { id: string; score: number }[] = JSON.parse(clean);
 
-  // Merge scores back into original full product objects
-  const scoreMap = new Map(ranked.map((r) => [r.id, r.score]));
-  return [...products]
-    .map((p) => ({ ...p, score: scoreMap.get(p.id) ?? 0 }))
-    .sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+ // ─── Affiliate partners get a ranking boost ───────────────────────────────────
+const AFFILIATE_SOURCES = new Set(["amazon", "flipkart", "myntra", "meesho", "ajio", "nykaa"]);
+const AFFILIATE_BOOST = 50; // points out of 100 —
+
+// Merge scores back into original full product objects
+const scoreMap = new Map(ranked.map((r) => [r.id, r.score]));
+return [...products]
+  .map((p) => {
+    const baseScore = scoreMap.get(p.id) ?? 0;
+    const boost = AFFILIATE_SOURCES.has(p.source) ? AFFILIATE_BOOST : 0;
+    return { ...p, score: Math.min(100, baseScore + boost) };
+  })
+  .sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
 }

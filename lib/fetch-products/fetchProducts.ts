@@ -1,3 +1,4 @@
+import { attachAffiliate } from "../affiliate/affiliate";
 import { Product } from "../ai/analyzeProducts";
 
 // Serper.dev Google Shopping response shape
@@ -33,6 +34,22 @@ function normalizeSource(source: string): string {
 function parsePrice(priceStr: string): number {
   const cleaned = priceStr.replace(/[^0-9.]/g, "");
   return parseFloat(cleaned) || 0;
+}
+// ─── Direct retailer search URLs ─────────────────────────────────────────────
+function resolveProductUrl(link: string, source: string, title: string): string {
+  const isGoogleUrl = link.includes("google.com");
+  if (!isGoogleUrl) return link;
+
+  const q = encodeURIComponent(title);
+  switch (source) {
+    case "amazon":   return `https://www.amazon.in/s?k=${q}`;
+    case "flipkart": return `https://www.flipkart.com/search?q=${q}`;
+    case "meesho":   return `https://www.meesho.com/search?q=${q}`;
+    case "myntra":   return `https://www.myntra.com/${q}`;
+    case "ajio":     return `https://www.ajio.com/search/?text=${q}`;
+    case "nykaa":    return `https://www.nykaa.com/search/result/?q=${q}`;
+    default:         return link;
+  }
 }
 
 // ─── Main fetch function ──────────────────────────────────────────────────────
@@ -71,15 +88,19 @@ export async function fetchProducts(
   }
 
   // ─── Normalize to our Product type ─────────────────────────────────────────
-  const products: Product[] = data.shopping.map((item, index) => ({
+const products: Product[] = data.shopping.map((item, index) => {
+  const source = normalizeSource(item.source);
+  const resolvedUrl = resolveProductUrl(item.link, source, item.title);
+  return {
     id: `serper_${index}_${Date.now()}`,
     title: item.title,
     price: parsePrice(item.price),
     image: item.imageUrl ?? "https://via.placeholder.com/200",
-    source: normalizeSource(item.source),
-    url: item.link,
+    source,
+    url: attachAffiliate(resolvedUrl, source), // ← direct url + affiliate in one shot
     rating: item.rating ?? 0,
-  }));
+  };
+});
 
   // ─── Filter: only include products with a valid price ──────────────────────
   return products.filter((p) => p.price > 0);

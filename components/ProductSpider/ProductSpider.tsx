@@ -23,7 +23,7 @@ export default function ProductSpiderPage() {
         body: JSON.stringify({ query, location: "india" }),
       });
 
-      const amazonRes = await fetch("/api/amazon-top-3", {
+      const amazonRes = await fetch("/api/amazon-top-6", {
         method: "POST",
         body: JSON.stringify({ query }),
       });
@@ -50,7 +50,7 @@ export default function ProductSpiderPage() {
 
       {error && <p className="text-red-500 text-sm mt-3">{error}</p>}
       { amazonProducts.length > 0 && <>
-         <h2 className="mt-6 font-semibold">Top 3 Results</h2>
+         <h2 className="mt-6 font-semibold">Top 6 Amazon Results</h2>
          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-3">
             {amazonProducts.map((p) => (
               <ProductCard key={p.id} product={p} />
@@ -59,7 +59,7 @@ export default function ProductSpiderPage() {
           </>}
       {products.length > 0 && (
         <>
-        <h2 className="mt-6 font-semibold">Top Related Results</h2>
+        <h2 className="mt-6 font-semibold">Top Ranked Web Results</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
           {products.map((p) => (
             <ProductCard key={p.id} product={p} />
