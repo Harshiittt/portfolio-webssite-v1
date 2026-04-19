@@ -61,3 +61,6 @@ After adding your domain in Vercel:
 npm run build   # production build
 npm run start   # run production build locally
 ```
+## Testing on Mobile Devices
+1. For android go to http://10.0.2.2:3000
+2. For iOS go to http://localhost:3000

@@ -12,6 +12,22 @@ const SOURCE_LABELS: Record<string, string> = {
   zepto: "Zepto",
 };
 
+function getAmazonAppUrl(url: string): string {
+  try {
+    if (/android/i.test(navigator.userAgent)) {
+      return `intent://${url.replace(/^https?:\/\//, '')}#Intent;scheme=https;package=in.amazon.mShop.android.shopping;S.browser_fallback_url=${encodeURIComponent(url)};end`;
+    }
+
+    if (/iphone|ipad/i.test(navigator.userAgent)) {
+      return url; // iOS handles universal links fine
+    }
+
+    return url;
+  } catch {
+    return url;
+  }
+}
+
 export default function ProductCard({ product }: Props) {
   return (
     <div className="border border-gray-200 rounded-xl p-4 flex flex-col gap-2 shadow-sm hover:shadow-md transition-shadow">
@@ -45,7 +61,7 @@ export default function ProductCard({ product }: Props) {
           {SOURCE_LABELS[product.source] ?? product.source}
         </span>
         <a
-          href={product.url}
+          href={product.source === "amazon" ? getAmazonAppUrl(product.url) : product.url}
           target="_blank"
           rel="noopener noreferrer"
           className="text-xs bg-blue-600 text-white px-3 py-1 rounded-full hover:bg-blue-700"
