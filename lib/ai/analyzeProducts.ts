@@ -3,7 +3,7 @@ export interface Product {
   title: string;
   price: number;
   image: string;
-  source: "amazon" | "flipkart" | "meesho" | "myntra" | "ajio" | "nykaa" | string;
+  source: "Amazon" | "Flipkart" | "Meesho" | "Myntra" | "Ajio" | "Nykaa" | string;
   url: string;
   rating: number;
   score?: number;
@@ -26,7 +26,6 @@ export async function rankWithGrok(
   },
    body: JSON.stringify({
     model: "llama-3.3-70b-versatile",   // ← grok-beta is deprecated, using this
-    max_tokens: 90,
       messages: [
         {
           role: "system", 
@@ -47,7 +46,7 @@ Add a "score" field (0-100) to each product. Return ONLY valid JSON — no expla
   // Log full error body if not ok
   if (!response.ok) {
     const errText = await response.text();
-    throw new Error(`Grok API error: ${response.status} — ${errText}`);
+    throw new Error(`Groq API error: ${response.status} — ${errText}`);
   }
 
   const data = await response.json();
@@ -56,7 +55,7 @@ Add a "score" field (0-100) to each product. Return ONLY valid JSON — no expla
   const ranked: { id: string; score: number }[] = JSON.parse(clean);
 
  // ─── Affiliate partners get a ranking boost ───────────────────────────────────
-const AFFILIATE_SOURCES = new Set(["amazon", "flipkart", "myntra", "meesho", "ajio", "nykaa"]);
+const AFFILIATE_SOURCES = new Set(["Amazon", "Flipkart", "Myntra", "Meesho", "Ajio", "Nykaa"]);
 const AFFILIATE_BOOST = 50; // points out of 100 —
 
 // Merge scores back into original full product objects

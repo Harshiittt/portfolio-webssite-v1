@@ -1,3 +1,4 @@
+"use client";
 import { Product } from "@/lib/ai/analyzeProducts";
 
 interface Props {
@@ -12,19 +13,30 @@ const SOURCE_LABELS: Record<string, string> = {
   zepto: "Zepto",
 };
 
-function getAmazonAppUrl(url: string): string {
+function openAmazon(url: string) {
+  const asinMatch = url.match(/\/dp\/([A-Z0-9]{10})/);
+  if (!asinMatch) { window.open(url, "_blank"); return; }
+
+  const asin = asinMatch[1];
+  const isAndroid = /android/i.test(navigator.userAgent);
+  const isIOS = /iphone|ipad/i.test(navigator.userAgent);
+
+  if (isAndroid) {
+    // Chrome handles this natively — opens app if installed, fallback URL if not
+    window.location.href = `intent://detail?ASIN=${asin}#Intent;scheme=amzn;package=com.amazon.mShop.android.shopping;S.browser_fallback_url=${encodeURIComponent(url)};end`;
+  } else if (isIOS) {
+    // iOS universal link — system shows "Open in Amazon?" prompt if app installed
+    window.location.href = `https://www.amazon.in/dp/${asin}?tag=${extractTag(url)}`;
+  } else {
+    window.open(url, "_blank");
+  }
+}
+
+function extractTag(url: string): string {
   try {
-    if (/android/i.test(navigator.userAgent)) {
-      return `intent://${url.replace(/^https?:\/\//, '')}#Intent;scheme=https;package=in.amazon.mShop.android.shopping;S.browser_fallback_url=${encodeURIComponent(url)};end`;
-    }
-
-    if (/iphone|ipad/i.test(navigator.userAgent)) {
-      return url; // iOS handles universal links fine
-    }
-
-    return url;
+    return new URL(url).searchParams.get("tag") ?? "";
   } catch {
-    return url;
+    return "";
   }
 }
 
@@ -60,14 +72,16 @@ export default function ProductCard({ product }: Props) {
         <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
           {SOURCE_LABELS[product.source] ?? product.source}
         </span>
-        <a
-          href={product.source === "amazon" ? getAmazonAppUrl(product.url) : product.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-xs bg-blue-600 text-white px-3 py-1 rounded-full hover:bg-blue-700"
-        >
-          Buy Now
-        </a>
+        <button
+  onClick={() =>
+    product.source === "Amazon"
+      ? openAmazon(product.url)
+      : window.open(product.url, "_blank")
+  }
+  className="text-xs bg-blue-600 text-white px-3 py-1 rounded-full hover:bg-blue-700"
+>
+  Buy Now
+</button>
       </div>
     </div>
   );

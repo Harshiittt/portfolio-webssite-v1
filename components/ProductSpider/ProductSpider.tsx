@@ -10,10 +10,12 @@ export default function ProductSpiderPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [amazonProducts, setAmazonProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(false);
+  const [searchLoading, setSearchLoading] = useState(false);
   const [error, setError] = useState("");
 
   const handleSearch = async (query: string) => {
     setLoading(true);
+    setSearchLoading(true);
     setError("");
 
     try {
@@ -22,6 +24,8 @@ export default function ProductSpiderPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query, location: "india" }),
       });
+
+      if(res.ok) setSearchLoading(false);
 
       const amazonRes = await fetch("/api/amazon-top-6", {
         method: "POST",
@@ -38,6 +42,7 @@ export default function ProductSpiderPage() {
     } catch (e) {
       setError("Something went wrong. Please try again.");
     } finally {
+      setSearchLoading(false);
       setLoading(false);
     }
   };
@@ -49,6 +54,12 @@ export default function ProductSpiderPage() {
       <SearchBar onSearch={handleSearch} loading={loading} />
 
       {error && <p className="text-red-500 text-sm mt-3">{error}</p>}
+
+      {/* Loading states */}
+      {searchLoading && <p className="text-gray-400 text-sm mt-6">Searching for products...</p>}
+      {loading && !searchLoading && <p className="text-gray-400 text-sm mt-6">Our AI is Analyzing products...</p>}
+       
+      {/* Affilite Products mapped */}
       { amazonProducts.length > 0 && <>
          <h2 className="mt-6 font-semibold">Top 6 Amazon Results</h2>
          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-3">
@@ -57,6 +68,8 @@ export default function ProductSpiderPage() {
             ))}
           </div>
           </>}
+
+      {/* Serper Products mapped */}
       {products.length > 0 && (
         <>
         <h2 className="mt-6 font-semibold">Top Ranked Web Results</h2>
@@ -67,7 +80,7 @@ export default function ProductSpiderPage() {
         </div>
          </>
       )}
-
+      
       {!loading && products.length === 0 && (<>
         <p className="text-gray-400 text-sm mt-6 mb-4">
          Search for any product to get started.
