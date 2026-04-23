@@ -18,15 +18,14 @@ function openAmazon(url: string) {
   if (!asinMatch) { window.open(url, "_blank"); return; }
 
   const asin = asinMatch[1];
+  const tag = extractTag(url);
   const isAndroid = /android/i.test(navigator.userAgent);
   const isIOS = /iphone|ipad/i.test(navigator.userAgent);
 
   if (isAndroid) {
-    // Chrome handles this natively — opens app if installed, fallback URL if not
-    window.location.href = `intent://detail?ASIN=${asin}#Intent;scheme=amzn;package=com.amazon.mShop.android.shopping;S.browser_fallback_url=${encodeURIComponent(url)};end`;
+    window.location.href = `intent://detail?ASIN=${asin}&tag=${tag}#Intent;scheme=amzn;package=com.amazon.mShop.android.shopping;S.browser_fallback_url=${encodeURIComponent(url)};end`;
   } else if (isIOS) {
-    // iOS universal link — system shows "Open in Amazon?" prompt if app installed
-    window.location.href = `https://www.amazon.in/dp/${asin}?tag=${extractTag(url)}`;
+    window.location.href = `https://www.amazon.in/dp/${asin}?tag=${tag}`;
   } else {
     window.open(url, "_blank");
   }
