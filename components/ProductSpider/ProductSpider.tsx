@@ -56,7 +56,7 @@ export default function ProductSpiderPage() {
       {error && <p className="text-red-500 text-sm mt-3">{error}</p>}
 
       {/* Loading states */}
-      {searchLoading && <p className="text-gray-400 text-sm mt-6">Searching for products...</p>}
+      {searchLoading && <p className="text-gray-400 text-sm mt-6">Finding your products...</p>}
       {loading && !searchLoading && <p className="text-gray-400 text-sm mt-6">Our AI is Analyzing products...</p>}
        
       {/* Affilite Products mapped */}
@@ -87,7 +87,7 @@ export default function ProductSpiderPage() {
          Powered by Groq AI and Serper.
         </p>
         <h3 className= "text-lg text-gray-300 mb-4">
-            Scaffold Page with real products. Full feature being worked on.
+            Scaffold Page with real products. `Search for "best wireless earbuds under 3000" and see the magic!`
         </h3>
         </>
       )}
