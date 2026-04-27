@@ -84,10 +84,11 @@ export default function ProductSpiderPage() {
       {!loading && products.length === 0 && (<>
         <p className="text-gray-400 text-sm mt-6 mb-4">
          Search for any product to get started.
-         Powered by Groq AI and Serper.
+         Powered by Groq AI, Serper and RapidAPI.
         </p>
         <h3 className= "text-lg text-gray-300 mb-4">
-            Scaffold Page with real products. `Search for "best wireless earbuds under 3000" and see the magic!`
+            Scaffold Page with real products. Amazon products are fetched using RapidAPI's Amazon Data API, 
+            while the rest are sourced from Serper's web search results. Each product card includes an affiliate link, to demonstrate monetization potential.
         </h3>
         </>
       )}
