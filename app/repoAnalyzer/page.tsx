@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/PortfolioSections/Navbar";
 import RepoAnalyzerPage from "@/components/RepoAnalyzer/RepoAnalyzer";
 
 export const metadata: Metadata = {

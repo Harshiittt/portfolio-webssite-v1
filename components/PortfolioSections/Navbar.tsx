@@ -11,6 +11,7 @@ const navLinks = [
   { label: "analyzer", href: "/repoAnalyzer" },
   { label: "contact", href: "/#contact" },
   { label: "Product Spider", href: "/productSpider" },
+  { label: "Arb⚡SCAN", href: "/arbScanner" },
 ];
 
 export default function Navbar() {

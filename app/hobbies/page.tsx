@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/PortfolioSections/Navbar";
 import Hobbies from "@/components/Hobbies/Hobbies";
 
 export const metadata: Metadata = {
