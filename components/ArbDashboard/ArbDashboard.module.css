@@ -83,6 +83,18 @@
 .generateBtn:hover:not(:disabled) { opacity: 0.88; transform: translateY(-1px); }
 .generateBtn:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
 
+.generateBtnFootball {
+  composes: generateBtn;
+  background: transparent;
+  color: var(--color-teal);
+  border: 1px solid var(--color-teal);
+}
+
+.generateBtnFootball:hover:not(:disabled) {
+  background: var(--color-teal-subtle);
+  opacity: 1;
+}
+
 /* ─── SPINNER ────────────────────────────────────────────────────────────────── */
 
 .spinner {
@@ -341,6 +353,7 @@
 .oppRow:nth-child(even) td { background: var(--bg-card); }
 .oppRow:nth-child(odd) td { background: var(--bg-primary); }
 .oppRowExpanded td { background: var(--color-teal-subtle) !important; border-bottom: none; }
+.oppRowDupBook td:first-child { border-left: 3px solid #da1212; }
 
 .tdIndex {
   padding: 18px 14px;
@@ -397,15 +410,19 @@
   letter-spacing: 0.5px;
 }
 
-.oppRowDupBook td:first-child {
-  border-left: 3px solid #da1212;
-}
-
 .bookBadgeOdds {
   font-family: var(--font-mono);
   font-size: 0.85rem;
   font-weight: 700;
   color: var(--text-primary);
+}
+
+.bookBadgeStake {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-teal);
+  margin-top: 2px;
 }
 
 .tdProfit {
@@ -781,12 +798,146 @@
   border-radius: var(--radius-sm);
 }
 
-/* ─── STAKE IN BOOK BADGE ────────────────────────────────────────────────────── */
+/* ─── MOBILE ─────────────────────────────────────────────────────────────────── */
 
-.bookBadgeStake {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: var(--color-teal);
-  margin-top: 2px;
+@media (max-width: 768px) {
+
+  /* Header — brand full width top, buttons row below */
+  .header {
+    padding: 16px 20px;
+    gap: 12px;
+  }
+
+  .headerBrand { width: 100%; flex: unset; }
+
+  .brandTitle { font-size: 1.3rem; letter-spacing: 3px; }
+
+  .brandSub { font-size: 0.65rem; }
+
+  .headerMeta {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .lastScan { font-size: 0.68rem; }
+  .quota    { font-size: 0.65rem; }
+
+  /* Buttons sit side by side, full row */
+  .generateBtn,
+  .generateBtnFootball {
+    flex: 1;
+    justify-content: center;
+    padding: 11px 16px;
+    font-size: 0.8rem;
+  }
+
+  /* Controls — stack vertically */
+  .controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 20px;
+  }
+
+  .controlField { width: 100%; justify-content: space-between; }
+
+  .controlInput { width: 120px; }
+
+  .toggleWrap { width: 100%; }
+
+  .filterTabs {
+    margin-left: 0;
+    width: 100%;
+    gap: 6px;
+  }
+
+  .filterTab {
+    padding: 6px 12px;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+  }
+
+  /* Stats bar — 2 column grid */
+  .statsBar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 20px;
+    gap: 0;
+  }
+
+  .statPill {
+    padding: 14px 0;
+    margin-right: 0;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .statPill:nth-child(odd)  { padding-right: 12px; border-right: 1px solid var(--border-color); }
+  .statPill:nth-child(3),
+  .statPill:nth-child(4)    { border-bottom: none; }
+
+  .statValue { font-size: 1.2rem; }
+
+  .sportSummary {
+    grid-column: 1 / -1;
+    margin-left: 0;
+    padding: 12px 0;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .sportChip { font-size: 0.65rem; padding: 3px 8px; }
+
+  /* Table — hide starts + index col, show as card-like rows */
+  .tableWrap { padding: 20px 20px 0; overflow-x: auto; }
+
+  .th:nth-child(1),
+  .th:nth-child(3) { display: none; }
+
+  .tdIndex,
+  .tdTime { display: none; }
+
+  .tdMatch  { padding: 14px 10px; }
+  .tdBooks  { padding: 14px 10px; min-width: 220px; }
+  .tdProfit { padding: 14px 8px; font-size: 1rem; }
+  .tdAmount { padding: 14px 8px; font-size: 0.85rem; }
+  .tdAction { padding: 14px 8px; }
+
+  .matchName  { font-size: 0.88rem; }
+  .matchSport { font-size: 0.65rem; }
+
+  .bookBadge  { padding: 5px 8px; }
+  .bookBadgeName { font-size: 0.62rem; }
+  .bookBadgeOdds { font-size: 0.75rem; }
+  .bookBadgeStake { font-size: 0.68rem; }
+
+  .trackBtn { padding: 6px 10px; font-size: 0.68rem; }
+
+  /* Detail row */
+  .detailInner { padding: 16px 20px 20px; }
+
+  .stakeGrid { grid-template-columns: 1fr 1fr !important; }
+
+  .stakeCardAmount { font-size: 1.2rem; }
+
+  /* My Bets */
+  .myBetsSection { margin: 28px 20px 48px; }
+
+  .myBetsHeader { padding: 16px 20px; }
+
+  .myBetCard { padding: 16px 20px; }
+
+  .myBetCardTop { flex-direction: column; gap: 12px; }
+
+  .myBetRight { gap: 16px; }
+
+  .myBetLegs { gap: 8px; }
+
+  .myBetLeg { min-width: 0; flex: 1; padding: 10px 14px; }
+
+  .myBetLegStake { font-size: 1rem; }
+
+  .myBetsTotalValue { font-size: 1.2rem; }
 }

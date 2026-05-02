@@ -86,9 +86,9 @@ export default function ProductSpiderPage() {
          Search for any product to get started.
          Powered by Groq AI, Serper and RapidAPI.
         </p>
-        <h3 className= "text-lg text-gray-300 mb-4">
-            Scaffold Page with real products. Amazon products are fetched using RapidAPI's Amazon Data API, 
-            while the rest are sourced from Serper's web search results. Each product card includes an affiliate link, to demonstrate monetization potential.
+        <h3 className= "text-lg text-gray-700 mb-4">
+            Scaffold Page with real products. 
+            Amazon products with deeplinks are live.
         </h3>
         </>
       )}

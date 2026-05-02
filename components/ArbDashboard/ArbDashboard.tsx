@@ -10,8 +10,7 @@ import {
 import type { ScanResult } from "@/app/api/bet-get/route";
 import styles from "./ArbDashboard.module.css";
 
-const COOLDOWN_MS   = 10 * 60 * 1000;
-const SPORT_FILTERS = ["All", "EPL", "La Liga", "UCL", "NBA"] as const;
+const SPORT_FILTERS = ["All", "EPL", "La Liga", "UCL", "Bundesliga", "Serie A", "NBA"] as const;
 
 // ─── SUB-COMPONENTS ───────────────────────────────────────────────────────────
 
@@ -252,6 +251,41 @@ export default function ArbDashboard() {
     }
   }, [scanning, nextAllowedMs]);
 
+
+  const generateFootball = useCallback(async () => {
+  if (scanning || (nextAllowedMs !== null && nextAllowedMs > 0)) return;
+  setScanning(true);
+  setError(null);
+  setOpps([]);
+  setMyBets([]);
+  setExpanded(null);
+  setSportLog([]);
+  setApiErrors([]);
+
+  try {
+    const res  = await fetch("/api/bet-get-football");
+    const data: ScanResult | { error: string } = await res.json();
+
+    if (!res.ok || "error" in data) {
+      setError("error" in data ? data.error : `Server error: ${res.status}`);
+      setScanning(false);
+      return;
+    }
+
+    setOpps(data.opportunities);
+    setSportLog(data.sportSummary);
+    setApiErrors(data.errors);
+    setRemaining(data.remainingRequests);
+    setFromCache(data.fromCache);
+    setNextAllowedMs(data.nextAllowedMs);
+    setLastScan(new Date().toLocaleTimeString());
+  } catch {
+    setError("Failed to reach /api/bet-get-football");
+  } finally {
+    setScanning(false);
+  }
+}, [scanning, nextAllowedMs]);
+
   const addToMyBets = (opp: ArbOpportunity) => {
     if (!myBets.find(b => b.id === opp.id))
       setMyBets(prev => [...prev, { ...opp, addedAt: new Date().toISOString() }]);
@@ -348,6 +382,13 @@ if (!unlocked) return <PasswordGate onUnlock={() => setUnlocked(true)} />;
         >
           {scanning ? <><span className={styles.spinner} /> Scanning…</> : "⚡ Generate"}
         </button>
+        <button
+  className={styles.generateBtnFootball}
+  onClick={generateFootball}
+  disabled={scanning || isCoolingDown}
+>
+  {scanning ? <><span className={styles.spinner} /> Scanning…</> : "⚽ Football"}
+</button>
       </header>
 
       {error && <div className={styles.errorBanner}>{error}</div>}
