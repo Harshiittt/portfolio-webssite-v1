@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import styles from "./RepoAnalyzer.module.css";
 
 export default function RepoAnalyzerPage() {
   const [url, setUrl] = useState("");
@@ -62,7 +63,7 @@ export default function RepoAnalyzerPage() {
 
         {/* Loading */}
         {loading && (
-          <div className="space-y-4 animate-pulse">
+          <div className="space-y-4">
             <Skeleton />
             <Skeleton />
             <Skeleton />
@@ -124,19 +125,18 @@ export default function RepoAnalyzerPage() {
             {/* Confidence */}
             <Card title="Confidence Score">
               <div className="flex items-center gap-3">
-  <div className="flex-1">
-    <div className="w-full bg-zinc-800 rounded-full h-3 overflow-hidden">
-      <div
-        className="bg-[#64ffda] h-3 rounded-full transition-all"
-        style={{ width: `${data.confidence *100 }%` }}
-      />
-    </div>
-  </div>
-
-  <span className="text-sm text-zinc-400 whitespace-nowrap">
-    {data.confidence*100}/100
-  </span>
-</div>
+                <div className="flex-1">
+                  <div className="w-full bg-zinc-800 rounded-full h-3 overflow-hidden">
+                    <div
+                      className={`bg-[#64ffda] h-3 rounded-full transition-all ${styles.progressBar}`}
+                      style={{ "--progress-width": `${data.confidence * 100}%` } as React.CSSProperties}
+                    />
+                  </div>
+                </div>
+                <span className="text-sm text-zinc-400 whitespace-nowrap">
+                  {data.confidence * 100}/100
+                </span>
+              </div>
             </Card>
           </div>
         )}
@@ -147,27 +147,11 @@ export default function RepoAnalyzerPage() {
 
 function Card({ title, children }: any) {
   return (
-    <div
-      className="p-6 rounded-2xl border transition-all duration-200 hover:-translate-y-[2px]"
-       style={{
-        background: "var(--bg-card)",
-        borderColor: "var(--border-color)",
-      }}
-      onMouseEnter={(e) =>
-        (e.currentTarget.style.borderColor = "var(--border-hover)")
-      }
-      onMouseLeave={(e) =>
-        (e.currentTarget.style.borderColor = "var(--border-color)")
-      }
-    >
-      <h2
-        className="text-xl font-semibold mb-3"
-        style={{ color: "var(--text-primary)" }}
-      >
+    <div className={styles.card}>
+      <h2 className={styles.cardTitle}>
         {title}
       </h2>
-
-      <div style={{ color: "var(--text-secondary)" }}>
+      <div className={styles.cardBody}>
         {children}
       </div>
     </div>
@@ -188,27 +172,10 @@ function List({ items = [] }: { items: string[] }) {
 
 function Skeleton() {
   return (
-    <div
-      className="p-6 rounded-2xl border animate-pulse"
-      style={{
-        background: "var(--bg-card)",
-        borderColor: "var(--border-color)",
-      }}
-    >
-      <div
-        className="h-4 rounded w-1/3 mb-4"
-        style={{ background: "var(--border-color)" }}
-      />
-
-      <div
-        className="h-3 rounded w-full mb-2"
-        style={{ background: "var(--border-color)" }}
-      />
-
-      <div
-        className="h-3 rounded w-5/6"
-        style={{ background: "var(--border-color)" }}
-      />
+    <div className={styles.skeleton}>
+      <div className={`h-4 w-1/3 mb-4 ${styles.skeletonLine}`} />
+      <div className={`h-3 w-full mb-2 ${styles.skeletonLine}`} />
+      <div className={`h-3 w-5/6 ${styles.skeletonLine}`} />
     </div>
   );
 }

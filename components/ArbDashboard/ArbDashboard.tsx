@@ -18,7 +18,7 @@ function StatPill({ label, value, accent = false }: { label: string; value: stri
   return (
     <div className={styles.statPill}>
       <span className={styles.statLabel}>{label}</span>
-      <span className={styles.statValue} style={accent ? { color: "var(--color-teal)" } : {}}>{value}</span>
+      <span className={`${styles.statValue} ${accent ? styles.statValueAccent : ""}`}>{value}</span>
     </div>
   );
 }
@@ -68,7 +68,11 @@ function OpportunityRow({
 
   return (
     <>
-      <tr className={`${styles.oppRow} ${isExpanded ? styles.oppRowExpanded : ""}`} onClick={onToggleExpand}>
+      <tr
+        className={`${styles.oppRow} ${isExpanded ? styles.oppRowExpanded : ""}`}
+        style={{ "--profit-color": pc } as React.CSSProperties}
+        onClick={onToggleExpand}
+      >
         <td className={styles.tdIndex}>{index + 1}</td>
 
         <td className={styles.tdMatch}>
@@ -91,8 +95,8 @@ function OpportunityRow({
           </div>
         </td>
 
-        <td className={styles.tdProfit} style={{ color: pc }}>+{opp.profitPct.toFixed(2)}%</td>
-        <td className={styles.tdAmount} style={{ color: pc }}>+${fmt(profit)}</td>
+        <td className={styles.tdProfitDynamic}>+{opp.profitPct.toFixed(2)}%</td>
+        <td className={styles.tdAmountDynamic}>+${fmt(profit)}</td>
 
         <td className={styles.tdAction} onClick={e => e.stopPropagation()}>
           <button className={`${styles.trackBtn} ${inMyBets ? styles.trackBtnActive : ""}`} onClick={onToggleMyBets}>
@@ -108,7 +112,10 @@ function OpportunityRow({
               <p className={styles.detailLabel}>
                 Stake breakdown · ${fmt(bankroll)} bankroll · guaranteed return ${fmt(payout)}
               </p>
-              <div className={styles.stakeGrid} style={{ gridTemplateColumns: `repeat(${legs.length + 2}, 1fr)` }}>
+              <div
+                className={styles.stakeGridDynamic}
+                style={{ "--stake-cols": legs.length + 2 } as React.CSSProperties}
+              >
                 {legs.map(leg => (
                   <div key={leg.name} className={styles.stakeCard}>
                     <span className={styles.stakeCardLabel}>Bet on</span>
@@ -120,11 +127,11 @@ function OpportunityRow({
                 ))}
                 <div className={styles.stakeCard}>
                   <span className={styles.stakeCardLabel}>Total return</span>
-                  <span className={styles.stakeCardAmount} style={{ color: "#ffd60a" }}>${fmt(payout)}</span>
+                  <span className={`${styles.stakeCardAmount} ${styles.stakeCardAmountYellow}`}>${fmt(payout)}</span>
                 </div>
                 <div className={`${styles.stakeCard} ${styles.stakeCardProfit}`}>
                   <span className={styles.stakeCardLabel}>Guaranteed profit</span>
-                  <span className={styles.stakeCardAmount} style={{ color: "var(--color-teal)" }}>+${fmt(profit)}</span>
+                  <span className={styles.stakeCardAmount}>+${fmt(profit)}</span>
                   <span className={styles.stakeCardBook}>ROI {opp.profitPct.toFixed(2)}%</span>
                 </div>
               </div>
@@ -316,32 +323,20 @@ export default function ArbDashboard() {
   };
 
   return (
-    <div style={{ display:"flex", flexDirection:"column", alignItems:"center",
-      justifyContent:"center", minHeight:"100vh", gap:20, background:"var(--bg-primary)" }}>
-      <h1 style={{ fontFamily:"var(--font-mono)", color:"var(--color-teal)",
-        fontSize:"1.6rem", letterSpacing:"4px" }}>ARB⚡SCAN</h1>
-      <div style={{ display:"flex", flexDirection:"column", gap:12,
-        background:"var(--bg-card)", border:"1px solid var(--border-color)",
-        padding:"32px 40px", borderRadius:"var(--radius-md)", minWidth:300 }}>
-        <label style={{ fontFamily:"var(--font-mono)", fontSize:"0.72rem",
-          color:"var(--text-secondary)", letterSpacing:"1.5px" }}>PASSWORD</label>
+    <div className={styles.passwordGate}>
+      <h1 className={styles.passwordTitle}>ARB⚡SCAN</h1>
+      <div className={styles.passwordBox}>
+        <label className={styles.passwordLabel}>PASSWORD: password_789 </label>
         <input
           type="password"
           value={input}
           onChange={e => { setInput(e.target.value); setError(false); }}
           onKeyDown={e => e.key === "Enter" && attempt()}
           autoFocus
-          style={{ background:"var(--bg-primary)", border:`1px solid ${error ? "#ff4466" : "var(--border-color)"}`,
-            color:"var(--color-teal)", padding:"10px 14px", fontFamily:"var(--font-mono)",
-            fontSize:"0.95rem", outline:"none", borderRadius:"var(--radius-sm)" }}
+          className={`${styles.passwordInput} ${error ? styles.passwordInputError : ""}`}
         />
-        {error && <span style={{ fontFamily:"var(--font-mono)", fontSize:"0.72rem", color:"#ff4466" }}>
-          Incorrect password
-        </span>}
-        <button onClick={attempt} style={{ marginTop:4, padding:"10px", background:"var(--color-teal)",
-          color:"var(--bg-primary)", border:"none", fontFamily:"var(--font-mono)",
-          fontWeight:700, fontSize:"0.82rem", letterSpacing:"1.5px", cursor:"pointer",
-          borderRadius:"var(--radius-sm)" }}>
+        {error && <span className={styles.passwordError}>Incorrect password</span>}
+        <button onClick={attempt} className={styles.passwordSubmit}>
           ENTER
         </button>
       </div>
@@ -450,7 +445,7 @@ if (!unlocked) return <PasswordGate onUnlock={() => setUnlocked(true)} />;
             {sportLog.map(s => (
               <span key={s.sport} className={styles.sportChip}>
                 {s.sport}: <strong>{s.events}</strong> events,{" "}
-                <strong style={{ color: s.arbs > 0 ? "var(--color-teal)" : "inherit" }}>{s.arbs}</strong> arbs
+                <strong className={s.arbs > 0 ? styles.sportChipActive : ""}>{s.arbs}</strong> arbs
               </span>
             ))}
             {apiErrors.map(e => <span key={e} className={styles.sportChipError}>{e}</span>)}
@@ -493,7 +488,7 @@ if (!unlocked) return <PasswordGate onUnlock={() => setUnlocked(true)} />;
             <thead>
               <tr>
                 {["#", "Match", "Starts", "Books / Odds / Stakes", "Profit %", "Profit $", ""].map((h, i) => (
-                  <th key={i} className={styles.th} style={{ textAlign: i >= 4 ? "right" : "left" }}>{h}</th>
+                  <th key={i} className={`${styles.th} ${i >= 4 ? styles.thRight : styles.thLeft}`}>{h}</th>
                 ))}
               </tr>
             </thead>

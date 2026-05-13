@@ -24,25 +24,6 @@ export default function Contact() {
         >
           Say Hello →
         </a>
-
-        <div className="flex justify-center gap-6">
-          {[
-            { label: "github", href: "https://github.com" },
-            { label: "linkedin", href: "https://linkedin.com" },
-            { label: "email", href: "mailto:anitagibbssuits@gmail.com" },
-            { label: "resume", href: "mailto:anitagibbssuits@gmail.com?subject=Request%20for%20Resume" },
-          ].map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              target={link.href.startsWith("http") ? "_blank" : undefined}
-              rel="noopener noreferrer"
-              className="font-mono text-xs text-[#8892b0] border border-[#1e2535] rounded px-4 py-2 hover:text-[#64ffda] hover:border-[#64ffda] transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
       </div>
     </section>
   );

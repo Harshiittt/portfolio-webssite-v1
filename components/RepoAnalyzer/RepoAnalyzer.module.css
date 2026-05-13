@@ -1,0 +1,45 @@
+.card {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  transition: all 0.2s, transform 0.2s;
+}
+
+.card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+.cardBody {
+  color: var(--text-secondary);
+}
+
+.skeleton {
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.skeletonLine {
+  border-radius: 0.25rem;
+  background: var(--border-color);
+}
+
+.progressBar {
+  width: var(--progress-width);
+}

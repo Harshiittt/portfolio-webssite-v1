@@ -787,6 +787,78 @@
   opacity: 0.7;
 }
 
+/* ─── PASSWORD GATE ──────────────────────────────────────────────────────────── */
+
+.passwordGate {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 20px;
+  background: var(--bg-primary);
+}
+
+.passwordTitle {
+  font-family: var(--font-mono);
+  color: var(--color-teal);
+  font-size: 1.6rem;
+  letter-spacing: 4px;
+}
+
+.passwordBox {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 32px 40px;
+  border-radius: var(--radius-md);
+  min-width: 300px;
+}
+
+.passwordLabel {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  letter-spacing: 1.5px;
+}
+
+.passwordInput {
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--color-teal);
+  padding: 10px 14px;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  outline: none;
+  border-radius: var(--radius-sm);
+}
+
+.passwordInput.passwordInputError {
+  border-color: #ff4466;
+}
+
+.passwordError {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: #ff4466;
+}
+
+.passwordSubmit {
+  margin-top: 4px;
+  padding: 10px;
+  background: var(--color-teal);
+  color: var(--bg-primary);
+  border: none;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+}
+
 /* ─── COOLDOWN BADGE ─────────────────────────────────────────────────────────── */
 
 .cooldownBadge {
@@ -797,6 +869,43 @@
   padding: 3px 10px;
   border-radius: var(--radius-sm);
 }
+
+/* ─── DYNAMIC MODIFIERS ──────────────────────────────────────────────────────── */
+
+.statValueAccent { color: var(--color-teal); }
+
+.tdProfitDynamic {
+  padding: 18px 14px;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--profit-color);
+}
+
+.tdAmountDynamic {
+  padding: 18px 14px;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--profit-color);
+}
+
+.stakeGridDynamic {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(var(--stake-cols), 1fr);
+}
+
+.stakeCardAmountYellow { color: #ffd60a; }
+
+.thLeft { text-align: left; }
+.thRight { text-align: right; }
+
+.sportChipActive { color: var(--color-teal); }
 
 /* ─── MOBILE ─────────────────────────────────────────────────────────────────── */
 

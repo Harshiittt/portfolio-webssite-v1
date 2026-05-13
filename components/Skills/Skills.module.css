@@ -1,0 +1,52 @@
+.section { padding: var(--section-padding) 0; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  gap: 10px;
+}
+
+.iconWrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: #112240;
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.2s, background 0.2s;
+}
+.iconWrap:hover {
+  border-color: var(--border-hover);
+  background: #172a4a;
+  transform: translateY(-3px);
+}
+
+.iconWrap img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0d0f14;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+  z-index: 10;
+}
+.iconWrap:hover .tooltip { opacity: 1; }
