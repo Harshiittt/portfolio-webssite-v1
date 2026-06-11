@@ -19,6 +19,8 @@ export default function ProjectCard({ project, index }: { project: ProjectData; 
   return (
     <Link
       href={project.href}
+      target={project.href.startsWith("http") ? "_blank" : undefined}
+      rel={project.href.startsWith("http") ? "noopener noreferrer" : undefined}
       className={`${styles.card} ${isEven ? styles.even : styles.odd}`}
       style={{
         "--project-color": project.color,

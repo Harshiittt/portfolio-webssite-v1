@@ -6,6 +6,7 @@ import Link from "next/link";
 const navLinks = [
   { label: "about", href: "/#about" },
   { label: "projects", href: "/projects" },
+  { label: "posfyi ↗", href: "https://posfyi.com" },
   { label: "skills", href: "/#skills" },
   { label: "analyzer", href: "/repoAnalyzer" },
   { label: "contact", href: "/#contact" },
@@ -51,6 +52,8 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
+              target={link.href.startsWith("http") ? "_blank" : undefined}
+              rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
               className="font-mono text-xs text-[#8892b0] hover:text-[#64ffda] transition-colors"
             >
               <span className="text-[#64ffda]">0{i + 1}. </span>
@@ -104,6 +107,8 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
+              target={link.href.startsWith("http") ? "_blank" : undefined}
+              rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
               className="font-mono text-sm text-[#8892b0] hover:text-[#64ffda] transition-colors"
             >
               <span className="text-[#64ffda] text-xs">0{i + 1}. </span>

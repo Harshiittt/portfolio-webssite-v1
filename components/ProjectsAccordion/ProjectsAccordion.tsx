@@ -6,6 +6,7 @@ import styles from "./ProjectsAccordion.module.css";
 import SectionTitle from "../PortfolioSections/SectionTitle";
 
 const projects = [
+  { title: "posfyi", subtitle: "SaaS fintech · payments on any Android", tech: ["Next.js", "React Native", "Razorpay"], color: "#38bdf8", media: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80", href: "https://posfyi.com" },
   { title: "AI Repo Analyzer", subtitle: "GitHub → structured insights", tech: ["Next.js", "Groq", "GitHub API"], color: "#64ffda", media: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80", href: "/repoAnalyzer" },
   { title: "Product Spider", subtitle: "AI e-commerce aggregator", tech: ["Next.js", "Groq", "Serper API"], color: "#f7c948", media: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&q=80", href: "/productSpider" },
   { title: "Arb⚡SCAN", subtitle: "Real-time arbitrage scanner with AuthGate", tech: ["WebSockets", "Next.js", "REST APIs"], color: "#ff6b6b", media: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&q=80", href: "/arbScanner" },
@@ -69,6 +70,8 @@ export default function ProjectsAccordion() {
               className={styles.card}
               onClick={(e) => handleCardClick(e, p.href)}
               draggable={false}
+              target={p.href.startsWith("http") ? "_blank" : undefined}
+              rel={p.href.startsWith("http") ? "noopener noreferrer" : undefined}
               style={{
                 "--card-color": p.color,
                 "--card-media": `url(${p.media})`,

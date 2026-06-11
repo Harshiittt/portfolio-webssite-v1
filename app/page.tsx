@@ -2,7 +2,7 @@ import Navbar from "@/components/PortfolioSections/Navbar";
 import Hero from "@/components/PortfolioSections/Hero";
 import About from "@/components/PortfolioSections/About";
 import Projects from "@/components/PortfolioSections/Projects";
-import Contact from "@/components/PortfolioSections/Contact";
+import Contact from "@/components/Contact/Contact";
 import Footer from "@/components/PortfolioSections/Footer";
 import Metrics from "@/components/Metrics/Metrics";
 import ProjectsAccordion from "@/components/ProjectsAccordion/ProjectsAccordion";
